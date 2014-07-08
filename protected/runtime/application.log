@@ -30,3 +30,19 @@ Stack trace:
 REQUEST_URI=/horario_uni/gii/model/index.asp
 HTTP_REFERER=http://localhost/horario_uni/gii/module/index.asp
 ---
+2014/07/07 23:48:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "aula_horario".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula_horario')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/horario_uni/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/horario_uni/aula_horario
+---
+2014/07/07 23:48:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "horarios".' in /var/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('horarios')
+#1 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/horario_uni/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/horario_uni/horarios
+---
