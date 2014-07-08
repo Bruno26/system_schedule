@@ -69,7 +69,7 @@ return array(
 		    'urlSuffix' => '.asp',
 		),
 		'db'=>array(
-			'connectionString' => 'postgres:host=localhost;dbname=system_horario',
+			'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
 			'emulatePrepare' => true,
 			'username' => 'postgres',
 			'password' => 'postgres',
