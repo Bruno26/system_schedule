@@ -8,7 +8,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
 <p class="help-block">Campos con<span class="required">*</span> son requeridos.</p><br>
 
-<?php echo $form->errorSummary($model); ?>
+<?php // echo $form->errorSummary($model); ?>
 
 <?php echo $form->textFieldRow($model, 'str_piso', array('class' => 'span5')); ?>
 

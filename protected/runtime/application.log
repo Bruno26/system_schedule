@@ -1394,3 +1394,335 @@ Stack trace:
 REQUEST_URI=/horario_uni/aula/delete/id/1.asp
 HTTP_REFERER=http://localhost/horario_uni/aula/admin
 ---
+2014/07/08 22:22:03 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbDetailView"."htmlOption" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('htmlOption', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/view.php(31): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(52): CController->render('view', Array)
+#9 [internal function]: AulaController->actionView('2')
+#10 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AulaController), Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AulaController), Object(ReflectionMethod), Array)
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/view/id/2')
+#22 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/horario_uni/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/horario_uni/aula/view/id/2.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/create
+---
+2014/07/08 22:22:12 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbDetailView"."option" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('option', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/view.php(31): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(52): CController->render('view', Array)
+#9 [internal function]: AulaController->actionView('2')
+#10 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AulaController), Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AulaController), Object(ReflectionMethod), Array)
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/view/id/2')
+#22 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/horario_uni/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/horario_uni/aula/view/id/2.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/create
+---
+2014/07/08 22:22:26 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbDetailView"."htmloption" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('htmloption', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/view.php(31): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(52): CController->render('view', Array)
+#9 [internal function]: AulaController->actionView('2')
+#10 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AulaController), Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AulaController), Object(ReflectionMethod), Array)
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/view/id/2')
+#22 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/horario_uni/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/horario_uni/aula/view/id/2.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/create
+---
+2014/07/08 22:24:18 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbDetailView"."htmloption" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('htmloption', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/view.php(32): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(52): CController->render('view', Array)
+#9 [internal function]: AulaController->actionView('2')
+#10 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AulaController), Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AulaController), Object(ReflectionMethod), Array)
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/view/id/2')
+#22 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/horario_uni/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/horario_uni/aula/view/id/2.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/create
+---
+2014/07/08 22:24:19 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbDetailView"."htmloption" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('htmloption', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/view.php(32): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(52): CController->render('view', Array)
+#9 [internal function]: AulaController->actionView('2')
+#10 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AulaController), Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AulaController), Object(ReflectionMethod), Array)
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/view/id/2')
+#22 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/horario_uni/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/horario_uni/aula/view/id/2.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/create
+---
+2014/07/08 22:24:20 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbDetailView"."htmloption" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('htmloption', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/view.php(32): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(52): CController->render('view', Array)
+#9 [internal function]: AulaController->actionView('2')
+#10 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AulaController), Array)
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AulaController), Object(ReflectionMethod), Array)
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/view/id/2')
+#22 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /var/www/horario_uni/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/horario_uni/aula/view/id/2.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/create
+---
+2014/07/08 22:30:44 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Su solicitud es inválida.' in /var/www/yii/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/view')
+#10 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/horario_uni/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/horario_uni/aula/view.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/update/id/2.asp
+---
+2014/07/08 22:45:34 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbGridView"."option" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('option', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/admin.php(67): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('admin', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(135): CController->render('admin', Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): AulaController->actionAdmin()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#19 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/admin/Aula...')
+#20 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/horario_uni/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/horario_uni/aula/admin/Aula_sort/nu_aula.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/admin/Aula_sort/nu_aula.desc.asp
+---
+2014/07/08 22:45:41 [error] [exception.CException] exception 'CException' with message 'La propiedad "TbGridView"."htmlOption" no se encuentra definida.' in /var/www/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('htmlOption', Array)
+#1 /var/www/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(AulaController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/horario_uni/protected/views/aula/admin.php(67): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/horari...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/horari...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/horari...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('admin', Array, true)
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(135): CController->render('admin', Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): AulaController->actionAdmin()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#19 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/admin/Aula...')
+#20 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/horario_uni/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/horario_uni/aula/admin/Aula_sort/nu_aula.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/admin/Aula_sort/nu_aula.desc.asp
+---
+2014/07/08 22:48:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /var/www/horario_uni/protected/controllers/AulaController.php:146
+Stack trace:
+#0 /var/www/horario_uni/protected/controllers/AulaController.php(82): AulaController->loadModel('')
+#1 [internal function]: AulaController->actionUpdate('')
+#2 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(AulaController), Array)
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(AulaController), Object(ReflectionMethod), Array)
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/update/id')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/horario_uni/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/horario_uni/aula/update/id.asp
+HTTP_REFERER=http://localhost/horario_uni/aula/admin/Aula_sort/nu_aula.asp
+---
+2014/07/08 22:58:03 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] FATAL:  password authentication failed for user "postgres"
+FATAL:  password authentication failed for user "postgres"' in /var/www/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/yii/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/yii/framework/db/ar/CActiveRecord.php(2361): CActiveRecord->getDbConnection()
+#6 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Aula))
+#7 /var/www/yii/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(120): CActiveRecord->__construct('search')
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): AulaController->actionAdmin()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#19 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/admin')
+#20 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/horario_uni/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/horario_uni/aula/admin
+---
+2014/07/08 23:02:41 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] FATAL:  password authentication failed for user "postgres"
+FATAL:  password authentication failed for user "postgres"' in /var/www/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /var/www/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii/framework/base/CApplication.php(450): CModule->getComponent('db')
+#4 /var/www/yii/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
+#5 /var/www/yii/framework/db/ar/CActiveRecord.php(2361): CActiveRecord->getDbConnection()
+#6 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Aula))
+#7 /var/www/yii/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
+#8 /var/www/horario_uni/protected/controllers/AulaController.php(120): CActiveRecord->__construct('search')
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): AulaController->actionAdmin()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#19 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('aula/admin')
+#20 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#21 /var/www/horario_uni/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/horario_uni/aula/admin
+---

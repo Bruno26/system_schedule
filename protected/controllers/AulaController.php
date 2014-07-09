@@ -47,9 +47,7 @@ class AulaController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
+        $this->render('view', array('model' => $this->loadModel($id)));
     }
 
     /**
@@ -68,9 +66,7 @@ class AulaController extends Controller {
                 $this->redirect(array('view', 'id' => $model->id_aula));
         }
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+        $this->render('create', array('model' => $model));
     }
 
     /**
@@ -90,9 +86,7 @@ class AulaController extends Controller {
                 $this->redirect(array('view', 'id' => $model->id_aula));
         }
 
-        $this->render('update', array(
-            'model' => $model,
-        ));
+        $this->render('update', array('model' => $model));
     }
 
     /**
@@ -116,9 +110,7 @@ class AulaController extends Controller {
      */
     public function actionIndex() {
         $dataProvider = new CActiveDataProvider('Aula');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+        $this->render('index', array('dataProvider' => $dataProvider,));
     }
 
     /**
@@ -130,9 +122,7 @@ class AulaController extends Controller {
         if (isset($_GET['Aula']))
             $model->attributes = $_GET['Aula'];
 
-        $this->render('admin', array(
-            'model' => $model,
-        ));
+        $this->render('admin', array('model' => $model));
     }
 
     /**

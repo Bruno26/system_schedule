@@ -40,7 +40,6 @@ return array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
         ),
-        
         /* 		'db'=>array(
           'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
           ),
@@ -53,10 +52,10 @@ return array(
             'urlSuffix' => '.asp',
         ),
         'db' => array(
-            'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
+            'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario',
             'emulatePrepare' => true,
             'username' => 'postgres',
-            'password' => 'postgres',
+            'password' => '123456',
             'charset' => 'utf8',
         ),
         'errorHandler' => array(
@@ -86,4 +85,6 @@ return array(
         'adminEmail' => 'webmaster@example.com',
     ),
     'theme' => 'biskit',
+    'language' => 'es',
+    'sourceLanguage' => 'en',
 );
