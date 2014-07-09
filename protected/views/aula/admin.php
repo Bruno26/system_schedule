@@ -27,8 +27,6 @@ $this->widget(
     'tabs' => array(
         array('label' => 'Registrar Aula', 'active' => false, 'url' => $this->createUrl('create')),
         array('label' => 'Administrar Aula', 'active' => true, 'url' => $this->createUrl('admin')),
-        array('label' => 'Ver Aula', 'active' => false, 'url' => $this->createUrl('view',array('id' => $model->id_aula))),
-        array('label' => 'Modificar Aula', 'active' => false,'url' => array('update', 'id' => $model->id_aula)),
     ),
         )
 );
