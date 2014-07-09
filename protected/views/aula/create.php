@@ -3,13 +3,25 @@ $this->breadcrumbs = array(
     'Aulas' => array('index'),
     'Create',
 );
-
-$this->menu = array(
-    array('label' => 'List Aula', 'url' => array('index')),
-    array('label' => 'Manage Aula', 'url' => array('admin')),
+$this->widget(
+        'bootstrap.widgets.TbTabs', array(
+    'type' => 'tabs', // 'tabs' or 'pills'
+    'tabs' => array(
+        array('label' => 'Registrar Aula', 'active' => true, 'url' => $this->createUrl('index')),
+        array('label' => 'Administrar Aula', 'active' => false, 'url' => $this->createUrl('admin')),
+    ),
+        )
 );
 ?>
 
-<h1>Create Aula</h1>
+<h1 align='center'>Registrar Aula</h1><br>
+<?php
+$this->widget(
+        'bootstrap.widgets.TbBox', array(
+    'title' => 'Registro de Aula',
+    'headerIcon' => 'icon-user',
+    'content' => $this->renderPartial('_form', array('model' => $model), TRUE),
+        )
+);
 
-<?php echo $this->renderPartial('_form', array('model' => $model)); ?>
+//echo $this->renderPartial('_form', array('model' => $model)); ?>
