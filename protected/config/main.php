@@ -52,7 +52,7 @@ return array(
             'urlSuffix' => '.asp',
         ),
         'db' => array(
-            'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario2',
+            'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario_dos',
             'emulatePrepare' => true,
             'username' => 'postgres',
             'password' => '123456',
