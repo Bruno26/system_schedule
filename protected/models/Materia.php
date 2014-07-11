@@ -16,7 +16,10 @@
  */
 class Materia extends CActiveRecord
 {
-	/**
+        public $carrera;
+        public $trayecto;
+        public $trimestre;
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -32,7 +35,7 @@ class Materia extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fk_seccion', 'required'),
+			array('fk_seccion, carrera, trayecto,trimestre,str_materia,str_corto_materia', 'required'),
 			array('fk_seccion', 'numerical', 'integerOnly'=>true),
 			array('str_materia, str_corto_materia, es_activo', 'safe'),
 			// The following rule is used by search().
@@ -61,9 +64,12 @@ class Materia extends CActiveRecord
 	{
 		return array(
 			'id_materia' => 'Id Materia',
-			'fk_seccion' => 'Fk Seccion',
-			'str_materia' => 'Str Materia',
-			'str_corto_materia' => 'Str Corto Materia',
+			'fk_seccion' => 'Seccion',
+			'trayecto' => 'Trayecto',
+			'carrera' => 'Carrera',
+			'trimestre' => 'Trimestre',
+			'str_materia' => 'Materia',
+			'str_corto_materia' => 'Abreviatura de la Materia',
 			'es_activo' => 'Es Activo',
 		);
 	}
