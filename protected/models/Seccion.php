@@ -5,11 +5,16 @@
  *
  * The followings are the available columns in table 'seccion':
  * @property integer $id_seccion
- * @property string $str_carrares
- * @property integer $nu_trimestre
+ * @property integer $fk_carrera
+ * @property integer $fk_trayecto
+ * @property integer $fk_trimestre
  * @property integer $nu_seccion
  *
  * The followings are the available model relations:
+ * @property Horario[] $horarios
+ * @property Maestro $fkCarrera
+ * @property Maestro $fkTrayecto
+ * @property Maestro $fkTrimestre
  * @property Materia[] $materias
  */
 class Seccion extends CActiveRecord
@@ -30,11 +35,11 @@ class Seccion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nu_trimestre, nu_seccion', 'numerical', 'integerOnly'=>true),
-			array('str_carrares', 'safe'),
+			array('fk_carrera, fk_trayecto, fk_trimestre', 'required'),
+			array('fk_carrera, fk_trayecto, fk_trimestre, nu_seccion', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_seccion, str_carrares, nu_trimestre, nu_seccion', 'safe', 'on'=>'search'),
+			array('id_seccion, fk_carrera, fk_trayecto, fk_trimestre, nu_seccion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,6 +51,10 @@ class Seccion extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'horarios' => array(self::HAS_MANY, 'Horario', 'fk_seccion'),
+			'fkCarrera' => array(self::BELONGS_TO, 'Maestro', 'fk_carrera'),
+			'fkTrayecto' => array(self::BELONGS_TO, 'Maestro', 'fk_trayecto'),
+			'fkTrimestre' => array(self::BELONGS_TO, 'Maestro', 'fk_trimestre'),
 			'materias' => array(self::HAS_MANY, 'Materia', 'fk_seccion'),
 		);
 	}
@@ -57,8 +66,9 @@ class Seccion extends CActiveRecord
 	{
 		return array(
 			'id_seccion' => 'Id Seccion',
-			'str_carrares' => 'nombre de la carrera',
-			'nu_trimestre' => 'trimestre de la carrera',
+			'fk_carrera' => 'Fk Carrera',
+			'fk_trayecto' => 'Fk Trayecto',
+			'fk_trimestre' => 'Fk Trimestre',
 			'nu_seccion' => 'numero de la seccion',
 		);
 	}
@@ -82,8 +92,9 @@ class Seccion extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_seccion',$this->id_seccion);
-		$criteria->compare('str_carrares',$this->str_carrares,true);
-		$criteria->compare('nu_trimestre',$this->nu_trimestre);
+		$criteria->compare('fk_carrera',$this->fk_carrera);
+		$criteria->compare('fk_trayecto',$this->fk_trayecto);
+		$criteria->compare('fk_trimestre',$this->fk_trimestre);
 		$criteria->compare('nu_seccion',$this->nu_seccion);
 
 		return new CActiveDataProvider($this, array(

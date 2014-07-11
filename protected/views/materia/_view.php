@@ -12,5 +12,9 @@
 	<?php echo CHtml::encode($data->str_materia); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('str_corto_materia')); ?>:</b>
+	<?php echo CHtml::encode($data->str_corto_materia); ?>
+	<br />
+
 
 </div>

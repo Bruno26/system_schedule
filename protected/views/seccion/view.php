@@ -19,8 +19,9 @@ array('label'=>'Manage Seccion','url'=>array('admin')),
 'data'=>$model,
 'attributes'=>array(
 		'id_seccion',
-		'str_carrares',
-		'nu_trimestre',
+		'fk_carrera',
+		'fk_trayecto',
+		'fk_trimestre',
 		'nu_seccion',
 ),
 )); ?>

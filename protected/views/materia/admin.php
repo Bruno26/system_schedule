@@ -46,6 +46,7 @@ return false;
 		'id_materia',
 		'fk_seccion',
 		'str_materia',
+		'str_corto_materia',
 array(
 'class'=>'bootstrap.widgets.TbButtonColumn',
 ),

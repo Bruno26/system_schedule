@@ -44,8 +44,9 @@ return false;
 'filter'=>$model,
 'columns'=>array(
 		'id_seccion',
-		'str_carrares',
-		'nu_trimestre',
+		'fk_carrera',
+		'fk_trayecto',
+		'fk_trimestre',
 		'nu_seccion',
 array(
 'class'=>'bootstrap.widgets.TbButtonColumn',

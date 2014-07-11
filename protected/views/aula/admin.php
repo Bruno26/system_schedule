@@ -1,4 +1,13 @@
 <?php
+$this->breadcrumbs=array(
+	'Aulas'=>array('index'),
+	'Manage',
+);
+
+$this->menu=array(
+array('label'=>'List Aula','url'=>array('index')),
+array('label'=>'Create Aula','url'=>array('create')),
+);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -14,49 +23,32 @@ return false;
 ");
 ?>
 
+<h1>Manage Aulas</h1>
 
-<?php
-$this->breadcrumbs = array(
-    'Aulas' => array('index'),
-    'Administración',
-);
+<p>
+	You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
+		&lt;&gt;</b>
+	or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+</p>
 
-$this->widget(
-        'bootstrap.widgets.TbTabs', array(
-    'type' => 'tabs', // 'tabs' or 'pills'
-    'tabs' => array(
-        array('label' => 'Registrar Aula', 'active' => false, 'url' => $this->createUrl('create')),
-        array('label' => 'Administrar Aula', 'active' => true, 'url' => $this->createUrl('admin')),
-    ),
-        )
-);
-?>
-
-<br><h1 align='center'>Administración de las Aulas</h1><br>
-
-
-<?php // echo CHtml::link('Advanced Search', '#', array('class' => 'search-button btn')); ?>
+<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
 <div class="search-form" style="display:none">
-    <?php
-    $this->renderPartial('_search', array(
-        'model' => $model,
-    ));
-    ?>
+	<?php $this->renderPartial('_search',array(
+	'model'=>$model,
+)); ?>
 </div><!-- search-form -->
 
-    <?php
-    $this->widget('bootstrap.widgets.TbGridView', array(
-        'id' => 'aula-grid',
-        'dataProvider' => $model->search(),
-//        'filter' => $model,
-        'columns' => array(
-            'str_piso',
-            'nu_aula',
-            array(
-                'class' => 'bootstrap.widgets.TbButtonColumn',
-            ),
-        ),
-    ));
-    ?>
-<br>
-
+<?php $this->widget('bootstrap.widgets.TbGridView',array(
+'id'=>'aula-grid',
+'dataProvider'=>$model->search(),
+'filter'=>$model,
+'columns'=>array(
+		'id_aula',
+		'str_piso',
+		'nu_aula',
+		'piso_aula',
+array(
+'class'=>'bootstrap.widgets.TbButtonColumn',
+),
+),
+)); ?>

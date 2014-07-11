@@ -7,9 +7,11 @@
 
 <?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'str_carrares',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'fk_carrera',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'nu_trimestre',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'fk_trayecto',array('class'=>'span5')); ?>
+
+	<?php echo $form->textFieldRow($model,'fk_trimestre',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'nu_seccion',array('class'=>'span5')); ?>
 

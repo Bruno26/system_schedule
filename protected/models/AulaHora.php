@@ -5,15 +5,15 @@
  *
  * The followings are the available columns in table 'aula_hora':
  * @property integer $id_aula_hora
- * @property integer $fk_dia
  * @property integer $fk_aula
+ * @property integer $fk_dia
  * @property integer $fk_hora
  * @property boolean $es_activo
  *
  * The followings are the available model relations:
  * @property Aula $fkAula
- * @property Horas $fkHora
- * @property Dia $fkDia
+ * @property Maestro $fkDia
+ * @property Maestro $fkHora
  */
 class AulaHora extends CActiveRecord
 {
@@ -33,12 +33,12 @@ class AulaHora extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fk_dia, fk_aula, fk_hora', 'required'),
-			array('fk_dia, fk_aula, fk_hora', 'numerical', 'integerOnly'=>true),
+			array('fk_aula, fk_dia, fk_hora', 'required'),
+			array('fk_aula, fk_dia, fk_hora', 'numerical', 'integerOnly'=>true),
 			array('es_activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_aula_hora, fk_dia, fk_aula, fk_hora, es_activo', 'safe', 'on'=>'search'),
+			array('id_aula_hora, fk_aula, fk_dia, fk_hora, es_activo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +51,8 @@ class AulaHora extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'fkAula' => array(self::BELONGS_TO, 'Aula', 'fk_aula'),
-			'fkHora' => array(self::BELONGS_TO, 'Horas', 'fk_hora'),
-			'fkDia' => array(self::BELONGS_TO, 'Dia', 'fk_dia'),
+			'fkDia' => array(self::BELONGS_TO, 'Maestro', 'fk_dia'),
+			'fkHora' => array(self::BELONGS_TO, 'Maestro', 'fk_hora'),
 		);
 	}
 
@@ -63,8 +63,8 @@ class AulaHora extends CActiveRecord
 	{
 		return array(
 			'id_aula_hora' => 'Id Aula Hora',
-			'fk_dia' => 'Fk Dia',
 			'fk_aula' => 'Fk Aula',
+			'fk_dia' => 'Fk Dia',
 			'fk_hora' => 'Fk Hora',
 			'es_activo' => 'true si esta ocupado, false si esta libre',
 		);
@@ -89,8 +89,8 @@ class AulaHora extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_aula_hora',$this->id_aula_hora);
-		$criteria->compare('fk_dia',$this->fk_dia);
 		$criteria->compare('fk_aula',$this->fk_aula);
+		$criteria->compare('fk_dia',$this->fk_dia);
 		$criteria->compare('fk_hora',$this->fk_hora);
 		$criteria->compare('es_activo',$this->es_activo);
 

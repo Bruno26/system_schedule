@@ -7,6 +7,7 @@
  * @property integer $id_materia
  * @property integer $fk_seccion
  * @property string $str_materia
+ * @property string $str_corto_materia
  *
  * The followings are the available model relations:
  * @property Horario[] $horarios
@@ -32,10 +33,10 @@ class Materia extends CActiveRecord
 		return array(
 			array('fk_seccion', 'required'),
 			array('fk_seccion', 'numerical', 'integerOnly'=>true),
-			array('str_materia', 'safe'),
+			array('str_materia, str_corto_materia', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_materia, fk_seccion, str_materia', 'safe', 'on'=>'search'),
+			array('id_materia, fk_seccion, str_materia, str_corto_materia', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +62,7 @@ class Materia extends CActiveRecord
 			'id_materia' => 'Id Materia',
 			'fk_seccion' => 'Fk Seccion',
 			'str_materia' => 'descripcion de la materia',
+			'str_corto_materia' => 'Str Corto Materia',
 		);
 	}
 
@@ -85,6 +87,7 @@ class Materia extends CActiveRecord
 		$criteria->compare('id_materia',$this->id_materia);
 		$criteria->compare('fk_seccion',$this->fk_seccion);
 		$criteria->compare('str_materia',$this->str_materia,true);
+		$criteria->compare('str_corto_materia',$this->str_corto_materia,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

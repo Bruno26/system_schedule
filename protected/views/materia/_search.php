@@ -9,6 +9,8 @@
 
 		<?php echo $form->textFieldRow($model,'str_materia',array('class'=>'span5')); ?>
 
+		<?php echo $form->textFieldRow($model,'str_corto_materia',array('class'=>'span5')); ?>
+
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType' => 'submit',

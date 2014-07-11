@@ -38,7 +38,8 @@
                                 'items' => array(
                                     array('label' => 'Inicio', 'url' => array('/site/index')),
                                     array('label' => 'Aula', 'url' => array('/aula/admin')),
-                                    array('label' => 'Materias', 'url' => array('/site/contact')),
+                                    array('label' => 'Materias', 'url' => array('/materia/admin')),
+                                    array('label' => 'Sección', 'url' => array('/seccion/admin')),
                                     array('label' => 'Iniciar Sesión', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                                     array('label' => 'Cerrar Sesión(' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
                                 ),

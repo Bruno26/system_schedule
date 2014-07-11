@@ -44,10 +44,14 @@ return false;
 'filter'=>$model,
 'columns'=>array(
 		'id_horario',
+		'fk_seccion',
 		'fk_hora',
-		'fk_dia',
 		'fk_aula',
 		'fk_materia',
+		'fk_dia',
+		/*
+		'es_activo',
+		*/
 array(
 'class'=>'bootstrap.widgets.TbButtonColumn',
 ),

@@ -1,24 +1,30 @@
 <?php
 
 /**
- * This is the model class for table "dia".
+ * This is the model class for table "maestro".
  *
- * The followings are the available columns in table 'dia':
- * @property integer $id_dia
- * @property string $str_dia
+ * The followings are the available columns in table 'maestro':
+ * @property integer $id_maestro
+ * @property string $descripcion
+ * @property integer $padre
  *
  * The followings are the available model relations:
  * @property Horario[] $horarios
+ * @property Horario[] $horarios1
  * @property AulaHora[] $aulaHoras
+ * @property AulaHora[] $aulaHoras1
+ * @property Seccion[] $seccions
+ * @property Seccion[] $seccions1
+ * @property Seccion[] $seccions2
  */
-class Dia extends CActiveRecord
+class Maestro extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'dia';
+		return 'maestro';
 	}
 
 	/**
@@ -29,10 +35,11 @@ class Dia extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('str_dia', 'safe'),
+			array('padre', 'numerical', 'integerOnly'=>true),
+			array('descripcion', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_dia, str_dia', 'safe', 'on'=>'search'),
+			array('id_maestro, descripcion, padre', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,8 +51,13 @@ class Dia extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'horarios' => array(self::HAS_MANY, 'Horario', 'fk_dia'),
+			'horarios' => array(self::HAS_MANY, 'Horario', 'fk_hora'),
+			'horarios1' => array(self::HAS_MANY, 'Horario', 'fk_dia'),
 			'aulaHoras' => array(self::HAS_MANY, 'AulaHora', 'fk_dia'),
+			'aulaHoras1' => array(self::HAS_MANY, 'AulaHora', 'fk_hora'),
+			'seccions' => array(self::HAS_MANY, 'Seccion', 'fk_carrera'),
+			'seccions1' => array(self::HAS_MANY, 'Seccion', 'fk_trayecto'),
+			'seccions2' => array(self::HAS_MANY, 'Seccion', 'fk_trimestre'),
 		);
 	}
 
@@ -55,8 +67,9 @@ class Dia extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_dia' => 'Id Dia',
-			'str_dia' => 'descripcion del dia',
+			'id_maestro' => 'Id Maestro',
+			'descripcion' => 'Descripcion',
+			'padre' => 'Padre',
 		);
 	}
 
@@ -78,8 +91,9 @@ class Dia extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_dia',$this->id_dia);
-		$criteria->compare('str_dia',$this->str_dia,true);
+		$criteria->compare('id_maestro',$this->id_maestro);
+		$criteria->compare('descripcion',$this->descripcion,true);
+		$criteria->compare('padre',$this->padre);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -90,7 +104,7 @@ class Dia extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Dia the static model class
+	 * @return Maestro the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

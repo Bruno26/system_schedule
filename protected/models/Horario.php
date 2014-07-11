@@ -5,16 +5,19 @@
  *
  * The followings are the available columns in table 'horario':
  * @property integer $id_horario
+ * @property integer $fk_seccion
  * @property integer $fk_hora
- * @property integer $fk_dia
  * @property integer $fk_aula
  * @property integer $fk_materia
+ * @property integer $fk_dia
+ * @property boolean $es_activo
  *
  * The followings are the available model relations:
- * @property Materia $fkMateria
  * @property Aula $fkAula
- * @property Horas $fkHora
- * @property Dia $fkDia
+ * @property Materia $fkMateria
+ * @property Seccion $fkSeccion
+ * @property Maestro $fkHora
+ * @property Maestro $fkDia
  */
 class Horario extends CActiveRecord
 {
@@ -34,11 +37,12 @@ class Horario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fk_hora, fk_dia, fk_aula, fk_materia', 'required'),
-			array('fk_hora, fk_dia, fk_aula, fk_materia', 'numerical', 'integerOnly'=>true),
+			array('fk_seccion, fk_hora, fk_aula, fk_materia, fk_dia', 'required'),
+			array('fk_seccion, fk_hora, fk_aula, fk_materia, fk_dia', 'numerical', 'integerOnly'=>true),
+			array('es_activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_horario, fk_hora, fk_dia, fk_aula, fk_materia', 'safe', 'on'=>'search'),
+			array('id_horario, fk_seccion, fk_hora, fk_aula, fk_materia, fk_dia, es_activo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,10 +54,11 @@ class Horario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'fkMateria' => array(self::BELONGS_TO, 'Materia', 'fk_materia'),
 			'fkAula' => array(self::BELONGS_TO, 'Aula', 'fk_aula'),
-			'fkHora' => array(self::BELONGS_TO, 'Horas', 'fk_hora'),
-			'fkDia' => array(self::BELONGS_TO, 'Dia', 'fk_dia'),
+			'fkMateria' => array(self::BELONGS_TO, 'Materia', 'fk_materia'),
+			'fkSeccion' => array(self::BELONGS_TO, 'Seccion', 'fk_seccion'),
+			'fkHora' => array(self::BELONGS_TO, 'Maestro', 'fk_hora'),
+			'fkDia' => array(self::BELONGS_TO, 'Maestro', 'fk_dia'),
 		);
 	}
 
@@ -64,10 +69,12 @@ class Horario extends CActiveRecord
 	{
 		return array(
 			'id_horario' => 'Id Horario',
+			'fk_seccion' => 'Fk Seccion',
 			'fk_hora' => 'Fk Hora',
-			'fk_dia' => 'Fk Dia',
 			'fk_aula' => 'Fk Aula',
 			'fk_materia' => 'Fk Materia',
+			'fk_dia' => 'Fk Dia',
+			'es_activo' => 'Es Activo',
 		);
 	}
 
@@ -90,10 +97,12 @@ class Horario extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_horario',$this->id_horario);
+		$criteria->compare('fk_seccion',$this->fk_seccion);
 		$criteria->compare('fk_hora',$this->fk_hora);
-		$criteria->compare('fk_dia',$this->fk_dia);
 		$criteria->compare('fk_aula',$this->fk_aula);
 		$criteria->compare('fk_materia',$this->fk_materia);
+		$criteria->compare('fk_dia',$this->fk_dia);
+		$criteria->compare('es_activo',$this->es_activo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

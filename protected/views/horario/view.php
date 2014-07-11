@@ -19,9 +19,11 @@ array('label'=>'Manage Horario','url'=>array('admin')),
 'data'=>$model,
 'attributes'=>array(
 		'id_horario',
+		'fk_seccion',
 		'fk_hora',
-		'fk_dia',
 		'fk_aula',
 		'fk_materia',
+		'fk_dia',
+		'es_activo',
 ),
 )); ?>
