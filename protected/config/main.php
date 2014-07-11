@@ -51,20 +51,20 @@ return array(
             'caseSensitive' => true,
             'urlSuffix' => '.asp',
         ),
-//        'db' => array(
-//            'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario2',
-//            'emulatePrepare' => true,
-//            'username' => 'postgres',
-//            'password' => '123456',
-//            'charset' => 'utf8',
-//        ),
         'db' => array(
-            'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
+            'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario2',
             'emulatePrepare' => true,
             'username' => 'postgres',
-            'password' => 'postgres',
+            'password' => '123456',
             'charset' => 'utf8',
         ),
+//        'db' => array(
+//            'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
+//            'emulatePrepare' => true,
+//            'username' => 'postgres',
+//            'password' => 'postgres',
+//            'charset' => 'utf8',
+//        ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
