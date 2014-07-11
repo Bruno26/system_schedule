@@ -2095,3 +2095,61 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/horario_uni/GII
 ---
+2014/07/10 21:44:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "index.asp" solicitada.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('index.asp')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('index.asp')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('horario/index.a...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/system_schedule/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/system_schedule/horario/index.asp/giic
+---
+2014/07/10 21:44:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "giic" solicitada.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('giic')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('giic')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('horario/giic')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/system_schedule/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/system_schedule/horario/giic
+---
+2014/07/10 21:49:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "index.php" solicitada.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('index.php')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('index.php')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('horario/index.p...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/system_schedule/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/system_schedule/horario/index.php/giix
+---
+2014/07/10 21:49:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "index.php" solicitada.' in /var/www/html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(270): CController->missingAction('index.php')
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('index.php')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('horario/index.p...')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/system_schedule/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/system_schedule/horario/index.php/giic
+---
+2014/07/10 21:49:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "giic"' in /var/www/html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('giic')
+#1 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/html/system_schedule/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/system_schedule/giic
+---
+2014/07/10 21:49:57 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /var/www/html/yii/framework/gii/GiiModule.php:170
+Stack trace:
+#0 /var/www/html/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /var/www/html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#2 /var/www/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /var/www/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/html/system_schedule/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/system_schedule/gii
+---

@@ -8,10 +8,11 @@
  * @property string $str_piso
  * @property string $nu_aula
  * @property string $piso_aula
+ * @property boolean $es_activo
  *
  * The followings are the available model relations:
- * @property Horario[] $horarios
  * @property AulaHora[] $aulaHoras
+ * @property Horario[] $horarios
  */
 class Aula extends CActiveRecord
 {
@@ -31,10 +32,10 @@ class Aula extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('str_piso, nu_aula, piso_aula', 'safe'),
+			array('str_piso, nu_aula, piso_aula, es_activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_aula, str_piso, nu_aula, piso_aula', 'safe', 'on'=>'search'),
+			array('id_aula, str_piso, nu_aula, piso_aula, es_activo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,8 +47,8 @@ class Aula extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'horarios' => array(self::HAS_MANY, 'Horario', 'fk_aula'),
 			'aulaHoras' => array(self::HAS_MANY, 'AulaHora', 'fk_aula'),
+			'horarios' => array(self::HAS_MANY, 'Horario', 'fk_aula'),
 		);
 	}
 
@@ -58,9 +59,10 @@ class Aula extends CActiveRecord
 	{
 		return array(
 			'id_aula' => 'Id Aula',
-			'str_piso' => 'numero del piso',
-			'nu_aula' => 'numero del aula',
+			'str_piso' => 'Str Piso',
+			'nu_aula' => 'Nu Aula',
 			'piso_aula' => 'Piso Aula',
+			'es_activo' => 'Es Activo',
 		);
 	}
 
@@ -86,6 +88,7 @@ class Aula extends CActiveRecord
 		$criteria->compare('str_piso',$this->str_piso,true);
 		$criteria->compare('nu_aula',$this->nu_aula,true);
 		$criteria->compare('piso_aula',$this->piso_aula,true);
+		$criteria->compare('es_activo',$this->es_activo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

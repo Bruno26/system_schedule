@@ -8,10 +8,11 @@
  * @property integer $fk_seccion
  * @property string $str_materia
  * @property string $str_corto_materia
+ * @property boolean $es_activo
  *
  * The followings are the available model relations:
- * @property Horario[] $horarios
  * @property Seccion $fkSeccion
+ * @property Horario[] $horarios
  */
 class Materia extends CActiveRecord
 {
@@ -33,10 +34,10 @@ class Materia extends CActiveRecord
 		return array(
 			array('fk_seccion', 'required'),
 			array('fk_seccion', 'numerical', 'integerOnly'=>true),
-			array('str_materia, str_corto_materia', 'safe'),
+			array('str_materia, str_corto_materia, es_activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_materia, fk_seccion, str_materia, str_corto_materia', 'safe', 'on'=>'search'),
+			array('id_materia, fk_seccion, str_materia, str_corto_materia, es_activo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,8 +49,8 @@ class Materia extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'horarios' => array(self::HAS_MANY, 'Horario', 'fk_materia'),
 			'fkSeccion' => array(self::BELONGS_TO, 'Seccion', 'fk_seccion'),
+			'horarios' => array(self::HAS_MANY, 'Horario', 'fk_materia'),
 		);
 	}
 
@@ -61,8 +62,9 @@ class Materia extends CActiveRecord
 		return array(
 			'id_materia' => 'Id Materia',
 			'fk_seccion' => 'Fk Seccion',
-			'str_materia' => 'descripcion de la materia',
+			'str_materia' => 'Str Materia',
 			'str_corto_materia' => 'Str Corto Materia',
+			'es_activo' => 'Es Activo',
 		);
 	}
 
@@ -88,6 +90,7 @@ class Materia extends CActiveRecord
 		$criteria->compare('fk_seccion',$this->fk_seccion);
 		$criteria->compare('str_materia',$this->str_materia,true);
 		$criteria->compare('str_corto_materia',$this->str_corto_materia,true);
+		$criteria->compare('es_activo',$this->es_activo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
