@@ -16,6 +16,7 @@ return array(
     'import' => array(
         'application.models.*',
         'application.components.*',
+        'application.controllers.*',
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool
@@ -60,7 +61,7 @@ return array(
         ),
 //        'db' => array(
 //            'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
-//            'emulatePrepare' => true,
+//            'emulatePrepare' => FALSE,
 //            'username' => 'postgres',
 //            'password' => 'postgres',
 //            'charset' => 'utf8',

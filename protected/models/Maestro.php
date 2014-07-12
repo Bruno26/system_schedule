@@ -115,7 +115,6 @@ class Maestro extends CActiveRecord {
         $criteria->addColumnCondition(array('t.padre' => $IdPadre));
         $data = CHtml::listData(self::model()->findAll($criteria), 'id_maestro', 'descripcion');
         return $data;
-        var_dump($data);die;
     }
 
 }

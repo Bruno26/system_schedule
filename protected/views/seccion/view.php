@@ -1,9 +1,4 @@
 <?php
-//$this->breadcrumbs=array(
-//	'Seccions'=>array('index'),
-//	$model->id_seccion,
-//);
-
 $this->widget(
         'bootstrap.widgets.TbTabs', array(
     'type' => 'tabs', // 'tabs' or 'pills'

@@ -1,30 +1,36 @@
 <?php
 
 /**
- * This is the model class for table "materia".
+ * This is the model class for table "vsw_carrera_materias".
  *
- * The followings are the available columns in table 'materia':
+ * The followings are the available columns in table 'vsw_carrera_materias':
  * @property integer $id_materia
- * @property integer $fk_seccion
+ * @property integer $fk_carrera
+ * @property string $carrera
+ * @property integer $fk_trayecto
+ * @property string $trayecto
+ * @property integer $fk_trimestre
+ * @property string $trimestre
+ * @property integer $id_seccion
+ * @property integer $seccion
  * @property string $str_materia
  * @property string $str_corto_materia
  * @property boolean $es_activo
- *
- * The followings are the available model relations:
- * @property Seccion $fkSeccion
- * @property Horario[] $horarios
  */
-class Materia extends CActiveRecord {
-
-    public $carrera;
-    public $trayecto;
-    public $trimestre;
+class VswCarreraMaterias extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'materia';
+        return 'vsw_carrera_materias';
+    }
+
+    /**
+     * primary key
+     */
+    public function primaryKey() {
+        return 'id_materia';
     }
 
     /**
@@ -34,12 +40,11 @@ class Materia extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fk_seccion, str_materia,str_corto_materia', 'required'),
-            array('fk_seccion', 'numerical', 'integerOnly' => true),
-            array('str_materia, str_corto_materia, es_activo', 'safe'),
+            array('id_materia, fk_carrera, fk_trayecto, fk_trimestre, id_seccion, seccion', 'numerical', 'integerOnly' => true),
+            array('carrera, trayecto, trimestre, str_materia, str_corto_materia, es_activo', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id_materia, fk_seccion, str_materia, str_corto_materia, es_activo', 'safe', 'on' => 'search'),
+            array('id_materia, fk_carrera, carrera, fk_trayecto, trayecto, fk_trimestre, trimestre, id_seccion, seccion, str_materia, str_corto_materia, es_activo', 'safe', 'on' => 'search'),
         );
     }
 
@@ -50,8 +55,6 @@ class Materia extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'fkSeccion' => array(self::BELONGS_TO, 'Seccion', 'fk_seccion'),
-            'horarios' => array(self::HAS_MANY, 'Horario', 'fk_materia'),
         );
     }
 
@@ -61,12 +64,16 @@ class Materia extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id_materia' => 'Id Materia',
-            'fk_seccion' => 'Seccion',
-            'trayecto' => 'Trayecto',
+            'fk_carrera' => 'Fk Carrera',
             'carrera' => 'Carrera',
+            'fk_trayecto' => 'Fk Trayecto',
+            'trayecto' => 'Trayecto',
+            'fk_trimestre' => 'Fk Trimestre',
             'trimestre' => 'Trimestre',
+            'id_seccion' => 'Id Seccion',
+            'seccion' => 'Seccion',
             'str_materia' => 'Materia',
-            'str_corto_materia' => 'Abreviatura de la Materia',
+            'str_corto_materia' => 'Abreviatura',
             'es_activo' => 'Es Activo',
         );
     }
@@ -89,7 +96,14 @@ class Materia extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id_materia', $this->id_materia);
-        $criteria->compare('fk_seccion', $this->fk_seccion);
+        $criteria->compare('fk_carrera', $this->fk_carrera);
+        $criteria->compare('carrera', $this->carrera, true);
+        $criteria->compare('fk_trayecto', $this->fk_trayecto);
+        $criteria->compare('trayecto', $this->trayecto, true);
+        $criteria->compare('fk_trimestre', $this->fk_trimestre);
+        $criteria->compare('trimestre', $this->trimestre, true);
+        $criteria->compare('id_seccion', $this->id_seccion);
+        $criteria->compare('seccion', $this->seccion);
         $criteria->compare('str_materia', $this->str_materia, true);
         $criteria->compare('str_corto_materia', $this->str_corto_materia, true);
         $criteria->compare('es_activo', $this->es_activo);
@@ -103,22 +117,10 @@ class Materia extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Materia the static model class
+     * @return VswCarreraMaterias the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
-    }
-
-    public function FindMateriasSeccion($IdSeccion, $Order = false) {
-        $criteria = new CDbCriteria;
-        if (!$Order) {
-            $criteria->order = 't.str_materia ASC';
-        } else {
-            $criteria->order = $Order;
-        }
-        $criteria->addColumnCondition(array('t.fk_seccion' => $IdSeccion));
-        $data = CHtml::listData(self::model()->findAll($criteria), 'id_materia', 'str_materia');
-        return $data;
     }
 
 }

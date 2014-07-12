@@ -69,6 +69,7 @@ class SeccionController extends Controller {
                 'nu_seccion' => (int) $_POST['Seccion']['nu_seccion']));
             if (!empty($consulta)) {
                 $this->render('create', array('model' => $model, 'error' => 'error'));
+                Yii:app()->end();
             } else {
                 $model->attributes = $_POST['Seccion'];
                 $model->es_activo = 'true';
@@ -127,16 +128,7 @@ class SeccionController extends Controller {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
-    /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Seccion');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
+    
     /**
      * Manages all models.
      */

@@ -70,10 +70,10 @@ class Horario extends CActiveRecord
 		return array(
 			'id_horario' => 'Id Horario',
 			'fk_seccion' => 'Fk Seccion',
-			'fk_hora' => 'Fk Hora',
-			'fk_aula' => 'Fk Aula',
-			'fk_materia' => 'Fk Materia',
-			'fk_dia' => 'Fk Dia',
+			'fk_hora' => 'Hora',
+			'fk_aula' => 'Aula',
+			'fk_materia' => 'Materia',
+			'fk_dia' => 'Dia',
 			'es_activo' => 'Es Activo',
 		);
 	}
