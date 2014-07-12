@@ -160,8 +160,6 @@ $model=new Aula('search');
 $model->unsetAttributes();  // clear any default values
 if(isset($_GET['Aula']))
 $model->attributes=$_GET['Aula'];
-
-
 $this->render('admin',array(
 'model'=>$model,
 ));
