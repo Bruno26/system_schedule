@@ -50,6 +50,31 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
+            'header' => 'Acción',
+            'htmlOptions' => array('width' => '85', 'style' => 'text-align: center;'),
+            'template' => '{ver}{delete}{horario}',
+            'buttons' => array(
+                'ver' => array(
+                    'url' => 'Yii::app()->createUrl("seccion/view", array("id"=>$data->id_seccion))',
+                    'label' => 'Ver Detalle',
+                    'icon' => 'eye-open',
+                    'size' => 'medium',
+                ),
+                'delete' => array(
+                    'label' => 'Eliminar',
+                    'icon' => 'icon-trash',
+                    'size' => 'medium',
+                    'options' => array('style' => 'margin-left:7px;',),
+                    'url' => 'Yii::app()->createUrl("seccion/delete", array("id"=>$data->id_seccion))',
+                ),
+                'horario' => array(
+                    'label' => 'Ver horaio',
+                    'icon' => 'icon-calendar',
+                    'size' => 'medium',
+                    'options' => array('style' => 'margin-left:7px;',),
+                    'url' => 'Yii::app()->createUrl("horario/index", array("id"=>$data->id_seccion))',
+                ),
+            ),
         ),
     ),
 ));
