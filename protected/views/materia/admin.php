@@ -49,7 +49,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name' => 'str_materia',
             'value' => '$data->str_materia',
             'htmlOptions' => array('width' => '107px'),
-            'filter' => CHtml::listData(VswCarreraMaterias::model()->findAll(array('order' => 'str_materia')), 'seccion', 'str_materia'),
+            'filter' => CHtml::listData(VswCarreraMaterias::model()->findAll(array('order' => 'str_materia')), 'str_materia', 'str_materia'),
         ),
         'str_corto_materia' => array(
             'name' => 'str_corto_materia',
