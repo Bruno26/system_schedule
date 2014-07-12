@@ -32,7 +32,7 @@
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Aula', 'url'=>array('/aula/index')),
+				array('label'=>'Aula', 'url'=>array('/aula/admin')),
 				array('label'=>'Sección', 'url'=>array('/seccion/admin')),
 				array('label'=>'Materia', 'url'=>array('/materia/admin')),
 				array('label'=>'Horario', 'url'=>array('/horario/index')),

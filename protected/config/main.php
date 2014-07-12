@@ -91,7 +91,7 @@ return array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
     ),
-//    'theme' => 'biskit',
+    //'theme' => 'biskit',
     'language' => 'es',
     'sourceLanguage' => 'en',
 );
