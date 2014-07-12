@@ -53,7 +53,7 @@ return array(
         ),
         'db' => array(
             'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario_dos',
-            'emulatePrepare' => true,
+            'emulatePrepare' => false,
             'username' => 'postgres',
             'password' => '123456',
             'charset' => 'utf8',

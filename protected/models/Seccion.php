@@ -36,7 +36,7 @@ class Seccion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fk_carrera, fk_trayecto, fk_trimestre', 'required'),
+			array('fk_carrera, fk_trayecto, fk_trimestre, nu_seccion', 'required'),
 			array('fk_carrera, fk_trayecto, fk_trimestre, nu_seccion', 'numerical', 'integerOnly'=>true),
 			array('es_activo', 'safe'),
 			// The following rule is used by search().
@@ -68,10 +68,10 @@ class Seccion extends CActiveRecord
 	{
 		return array(
 			'id_seccion' => 'Id Seccion',
-			'fk_carrera' => 'Fk Carrera',
-			'fk_trayecto' => 'Fk Trayecto',
-			'fk_trimestre' => 'Fk Trimestre',
-			'nu_seccion' => 'Nu Seccion',
+			'fk_carrera' => 'Carrera',
+			'fk_trayecto' => 'Trayecto',
+			'fk_trimestre' => 'Trimestre',
+			'nu_seccion' => 'Sección',
 			'es_activo' => 'Es Activo',
 		);
 	}
