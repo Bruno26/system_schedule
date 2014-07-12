@@ -28,7 +28,7 @@ class MateriaController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update', 'BuscarTrayecto', 'BuscarTrimestre', 'BuscarSeccion'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -46,9 +46,8 @@ class MateriaController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
+        $model = VswCarreraMaterias::model()->findByPk($id);
+        $this->render('view', array('model' => $model));
     }
 
     /**
@@ -58,42 +57,32 @@ class MateriaController extends Controller {
     public function actionCreate() {
         $model = new Materia;
 
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
-
         if (isset($_POST['Materia'])) {
-            $model->attributes = $_POST['Materia'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id_materia));
+
+            $consulta = VswCarreraMaterias::model()->findByAttributes(array(
+                'fk_carrera' => (int) $_POST['Materia']['carrera'],
+                'fk_trayecto' => (int) $_POST['Materia']['trayecto'],
+                'fk_trimestre' => (int) $_POST['Materia']['trimestre'],
+                'str_materia' => strtoupper($_POST['Materia']['str_materia']),
+                'str_corto_materia' => strtoupper($_POST['Materia']['str_corto_materia']),
+                'es_activo' => 1,
+                'id_seccion' => (int) $_POST['Materia']['fk_seccion']));
+            if (!empty($consulta)) {
+                $this->render('create', array('model' => $model, 'error' => 'error'));
+                Yii:app()->end();
+            } else {
+                $model->fk_seccion = $_POST['Materia']['fk_seccion'];
+                $model->str_materia = strtoupper($_POST['Materia']['str_materia']);
+                $model->str_corto_materia = strtoupper($_POST['Materia']['str_corto_materia']);
+                if ($model->save())
+                    $this->redirect(array('view', 'id' => $model->id_materia));
+            }
         }
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+        $this->render('create', array('model' => $model));
     }
 
-    /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
-     */
-    public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
-
-        if (isset($_POST['Materia'])) {
-            $model->attributes = $_POST['Materia'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id_materia));
-        }
-
-        $this->render('update', array(
-            'model' => $model,
-        ));
-    }
-
+   
     /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -102,8 +91,7 @@ class MateriaController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
 // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-
+            Materia::model()->UpdateByPk($id, array("es_activo" => 0));
 // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
@@ -112,27 +100,93 @@ class MateriaController extends Controller {
     }
 
     /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Materia');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Materia('search');
+        $model = new VswCarreraMaterias('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Materia']))
-            $model->attributes = $_GET['Materia'];
+        if (isset($_GET['VswCarreraMaterias']))
+            $model->attributes = $_GET['VswCarreraMaterias'];
 
-        $this->render('admin', array(
-            'model' => $model,
-        ));
+        $this->render('admin', array('model' => $model));
+    }
+
+    /**
+     * FUNCION QUE MUESTRA TODOS LOS TRAYECTOS DE ACUERDO A UN ID DE UNA CARRERA
+     */
+    public function actionBuscarTrayecto() {
+        $Id = (isset($_POST['Materia']['carrera']) ? $_POST['Materia']['carrera'] : $_GET['carrera']);
+        $Selected = isset($_GET['trayecto']) ? $_GET['trayecto'] : '';
+        if (!empty($Id)) {
+            $criteria = new CDbCriteria;
+            $criteria->addCondition('t.fk_carrera = :fk_carrera');
+            $criteria->params = array(':fk_carrera' => $Id);
+            $criteria->order = 't.fk_trayecto ASC';
+            $data = CHtml::listData(VswSeccionCarreras::model()->findAll($criteria), 'fk_trayecto', 'trayecto');
+
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Seleccione'), true);
+            foreach ($data as $id => $value) {
+                if ($Selected == $id) {
+                    echo CHtml::tag('option', array('value' => $id, 'selected' => true), CHtml::encode($value), true);
+                } else {
+                    echo CHtml::tag('option', array('value' => $id), CHtml::encode($value), true);
+                }
+            }
+        } else {
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Seleccione'), true);
+        }
+    }
+
+    /**
+     * FUNCION QUE MUESTRA TODOS LOS TRIEMESTRES DE ACUERDO A UN ID DEL TRAYECTO
+     */
+    public function actionBuscarTrimestre() {
+        $Id = (isset($_POST['Materia']['trayecto']) ? $_POST['Materia']['trayecto'] : $_GET['trayecto']);
+        $Selected = isset($_GET['trimestre']) ? $_GET['trimestre'] : '';
+        if (!empty($Id)) {
+            $criteria = new CDbCriteria;
+            $criteria->addCondition('t.fk_trayecto= :fk_trayecto');
+            $criteria->params = array(':fk_trayecto' => $Id);
+            $criteria->order = 't.trimestre ASC';
+            $data = CHtml::listData(VswSeccionCarreras::model()->findAll($criteria), 'fk_trimestre', 'trimestre');
+
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Seleccione'), true);
+            foreach ($data as $id => $value) {
+                if ($Selected == $id) {
+                    echo CHtml::tag('option', array('value' => $id, 'selected' => true), CHtml::encode($value), true);
+                } else {
+                    echo CHtml::tag('option', array('value' => $id), CHtml::encode($value), true);
+                }
+            }
+        } else {
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Seleccione'), true);
+        }
+    }
+
+    /**
+     * FUNCION QUE MUESTRA TODOS LOS TRIEMESTRES DE ACUERDO A UN ID DEL TRAYECTO
+     */
+    public function actionBuscarSeccion() {
+        $Id = (isset($_POST['Materia']['trimestre']) ? $_POST['Materia']['trimestre'] : $_GET['trimestre']);
+        $Selected = isset($_GET['fk_seccion']) ? $_GET['fk_seccion'] : '';
+        if (!empty($Id)) {
+            $criteria = new CDbCriteria;
+            $criteria->addCondition('t.fk_trimestre= :fk_trimestre');
+            $criteria->params = array(':fk_trimestre' => $Id);
+            $criteria->order = 't.seccion ASC';
+            $data = CHtml::listData(VswSeccionCarreras::model()->findAll($criteria), 'id_seccion', 'seccion');
+
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Seleccione'), true);
+            foreach ($data as $id => $value) {
+                if ($Selected == $id) {
+                    echo CHtml::tag('option', array('value' => $id, 'selected' => true), CHtml::encode($value), true);
+                } else {
+                    echo CHtml::tag('option', array('value' => $id), CHtml::encode($value), true);
+                }
+            }
+        } else {
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Seleccione'), true);
+        }
     }
 
     /**

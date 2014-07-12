@@ -1,26 +1,39 @@
 <?php
-$this->breadcrumbs=array(
-	'Materias'=>array('index'),
-	$model->id_materia,
-);
-
-$this->menu=array(
-array('label'=>'List Materia','url'=>array('index')),
-array('label'=>'Create Materia','url'=>array('create')),
-array('label'=>'Update Materia','url'=>array('update','id'=>$model->id_materia)),
-array('label'=>'Delete Materia','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_materia),'confirm'=>'Are you sure you want to delete this item?')),
-array('label'=>'Manage Materia','url'=>array('admin')),
+$this->widget(
+        'bootstrap.widgets.TbTabs', array(
+    'type' => 'tabs', // 'tabs' or 'pills'
+    'tabs' => array(
+        array('label' => 'Registra', 'active' => false, 'url' => $this->createUrl('create')),
+        array('label' => 'Ver', 'active' => true),
+        array('label' => 'Administrar Materias', 'active' => false, 'url' => $this->createUrl('admin')),
+    ),
+        )
 );
 ?>
 
-<h1>View Materia #<?php echo $model->id_materia; ?></h1>
+<h1 align="center">Detalle de la Materia </h1>
+<div width="50%" class="table-responsive">
+    <table class="table">
+        <tr>
+            <td class="info"><b>CARRERA</b></td>
+            <td class="active"><?= $model->carrera ?></td>
+        </tr>
+        <tr>
+            <td class="info"><b>TRAYECTO</b></td>
+            <td class="active"><?= $model->trayecto ?></td>
+        </tr>
+        <tr>
+            <td class="info"><b>TRIMESTRE</b></td>
+            <td class="active"><?= $model->trimestre ?></td>
+        </tr>
+        <tr>
+            <td class="info"><b>SECCION</b></td>
+            <td class="active"><?= $model->seccion ?></td>
+        </tr>
+        <tr>
+            <td class="info"><b>MATERIA</b></td>
+            <td class="active"><?= $model->str_materia ?></td>
+        </tr>
+    </table>
+</div>
 
-<?php $this->widget('bootstrap.widgets.TbDetailView',array(
-'data'=>$model,
-'attributes'=>array(
-		'id_materia',
-		'fk_seccion',
-		'str_materia',
-		'str_corto_materia',
-),
-)); ?>

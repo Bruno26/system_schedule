@@ -60,7 +60,7 @@ return array(
         ),
 //        'db' => array(
 //            'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
-//            'emulatePrepare' => true,
+//            'emulatePrepare' => FALSE,
 //            'username' => 'postgres',
 //            'password' => 'postgres',
 //            'charset' => 'utf8',

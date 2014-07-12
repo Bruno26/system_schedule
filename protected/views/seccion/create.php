@@ -31,7 +31,7 @@ if (isset($error)) {
 }
 $this->widget(
         'bootstrap.widgets.TbBox', array(
-    'title' => 'Registro de Materia',
+    'title' => 'Registro de Sección',
     'content' => $this->renderPartial('_form', array('model' => $model), true)
         )
 );
