@@ -2,16 +2,15 @@
 $this->breadcrumbs=array(
 	'Aulas',
 );
-
-$this->menu=array(
-array('label'=>'Create Aula','url'=>array('create')),
-array('label'=>'Manage Aula','url'=>array('admin')),
-);
 ?>
-
-<h1>Aulas</h1>
-
-<?php $this->widget('bootstrap.widgets.TbListView',array(
-'dataProvider'=>$dataProvider,
-'itemView'=>'_view',
-)); ?>
+<div class="row-fluid">  
+   <div class="span12">
+<?php $this->widget(
+    'bootstrap.widgets.TbBox',
+    array(
+    'title' => 'Listado de Aulas',
+    'content' => $this->renderPartial('_view', array('model'=>$aula), TRUE),
+    )
+);?>
+</div>
+</div>

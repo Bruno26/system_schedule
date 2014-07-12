@@ -1,20 +1,47 @@
 <div class="view">
 
-		<b><?php echo CHtml::encode($data->getAttributeLabel('id_aula')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_aula),array('view','id'=>$data->id_aula)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('str_piso')); ?>:</b>
-	<?php echo CHtml::encode($data->str_piso); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('nu_aula')); ?>:</b>
-	<?php echo CHtml::encode($data->nu_aula); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('piso_aula')); ?>:</b>
-	<?php echo CHtml::encode($data->piso_aula); ?>
-	<br />
+<?php
+//var_dump($data);die;
+$activo = ($model->es_activo==1)?'Disponible':'No Disponible';
+//var_dump($activo);die;
+$this->widget('bootstrap.widgets.TbGridView', array(
+   'dataProvider' => $model->search(),
+   'filter' => $model,
+   'template' => "{items}",
+   'columns' => array(
+        array(
+            'name' => 'id_aula',
+            'header' => 'ID',
+            'htmlOptions' => array('color' =>'width: 60px'),
+        ),
+        array(
+            'name' => 'str_piso',
+            'header' => 'Piso',
+        ),
+        array(
+            'name' => 'nu_aula',
+            'header' => 'Aula Numero',
+        ),
+        array(
+            'name' => 'piso_aula',
+            'header' => 'Piso',
+        ),
+        array(
+            'name' => 'es_activo',
+            'header' => 'Disponible',
+            'value' => '$data->es_activo',
+        ),
+        array(
+            'class' => 'bootstrap.widgets.TbButtonColumn',
+            'header' => 'Acciones',
+            'htmlOptions' => array('width' => '85', 'style' => 'text-align: center;'),
+                //'template' => '{ver}{actualizar}{activar}{desactivar}{delete}{observacion}',
+                'deleteConfirmation' => '¿Seguro que quiere cambiar el Estatus de Este Promotor?',
+            //'value' => $activo,
+        ),
+    ),
+));
+?>
 
 
 </div>
