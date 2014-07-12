@@ -1,50 +1,59 @@
 <?php
-$this->breadcrumbs=array(
-	'Aulas'=>array('index'),
-	'Manage',
-);
+//$this->breadcrumbs = array(
+//    'Registrar',
+//);
 
-$this->menu=array(
-array('label'=>'List Aula','url'=>array('index')),
-array('label'=>'Create Aula','url'=>array('create')),
+$this->widget(
+        'bootstrap.widgets.TbTabs', array(
+    'type' => 'tabs', // 'tabs' or 'pills'
+    'tabs' => array(
+        array('label' => 'Ver Aulas Registradas', 'active' => true, 'url' => $this->createUrl('admin')),
+        array('label' => 'Registrar Aulas', 'active' => false, 'url' => $this->createUrl('create')),
+    ),
+        )
 );
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-$('.search-form').toggle();
-return false;
-});
-$('.search-form form').submit(function(){
-$.fn.yiiGridView.update('aula-grid', {
-data: $(this).serialize()
-});
-return false;
-});
-");
 ?>
 
 <h1>Listado de Aulas Disponibles</h1>
 
-<!--
-<p>
-	You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
-		&lt;&gt;</b>
-	or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
--->
+<?php
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'aula-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'str_piso' => array(
+            'name' => 'str_piso',
+            //'value' => '$data->fkTrayecto->descripcion',
+            'htmlOptions' => array('width' => '107px'),
+            'filter' => Aula::BuscarPiso(),
+        ),
+        'nu_aula' => array(
+            'name' => 'nu_aula',
+            //'value' => '$data->fkTrimestre->descripcion',
+            'htmlOptions' => array('width' => '107px'),
+            'filter' => Aula::BuscarNumeroAula(),
+        ),
+        //'es_activo' => array(
+            //'name' => 'es_activo',
+            //'value' => '($data->es_activo == 1)?"Disponible":"No Disponible"',
+            //'htmlOptions' => array('width' => '107px'),
+        //),
+        array(
+            'class' => 'bootstrap.widgets.TbButtonColumn',
+			'header'=>'Acciones',
+			'template'=>'{update}',
+			'buttons' => array(
+			//'borrar' => array(
+                        //'label' => 'Borrar Registro',
+                        //'options' => array('style' => 'margin-left:5px;', 'confirm' => '¿Desea borrar éste registro?'),
+                        //'url' => 'Yii::app()->createUrl("/aula/borrar/", array("id"=>$data->id_aula))',
+                        //'icon' => 'icon-trash ',
+                        //'size' => 'medium',
+                    //),
+			),
+        ),
+    ),
+));
+?>
 
-
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-'id'=>'aula-grid',
-'dataProvider'=>$model->search(),
-'filter'=>$model,
-'columns'=>array(
-		'id_aula',
-		'str_piso',
-		'nu_aula',
-		'piso_aula',
-array(
-'class'=>'bootstrap.widgets.TbButtonColumn',
-),
-),
-)); ?>
