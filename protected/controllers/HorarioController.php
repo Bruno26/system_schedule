@@ -188,5 +188,4 @@ class HorarioController extends Controller {
             Yii::app()->end();
         }
     }
-
 }

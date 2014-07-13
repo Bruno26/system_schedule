@@ -2,7 +2,9 @@
 Yii::app()->clientScript->registerScript('Horario', "
     $('#AddHorario').click(function() {
         var hora = $('#Horario_fk_hora').val();
+        var horaText  = $('#Horario_fk_hora').children(':selected').text();
         var dia = $('#Horario_fk_dia').val();
+        var diaText  = $('#Horario_fk_dia').children(':selected').text();
         var aula = $('#Horario_fk_aula').val();
         var materia = $('#Horario_fk_materia').val();
         
@@ -14,7 +16,17 @@ Yii::app()->clientScript->registerScript('Horario', "
                 conteo++;
             }
         });
-        if(conteo>=1){bootbox.alert('Debe completar los campos.');return false}
+        
+        var conteoUnicoHour = parseInt(0);
+        $('#ListadoHorario tr').each(function() {
+            var horaTable= $(this).find('td:eq(0)').html();
+            var diaTable = $(this).find('td:eq(1)').html();
+            if(horaTable==horaText && diaTable==diaText){ conteoUnicoHour++; }
+           
+        });
+
+        if(conteoUnicoHour>=1){bootbox.alert('El Dia seleccionado ya tiene la hora asignada.');return false}
+        
             $.ajax({
                 url: '" . CController::createUrl('Horario/BuscarDisponibilidad') . "',
                 type: 'POST',
@@ -118,13 +130,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                     'name' => 'fk_hora',
                     'value' => '$data->fkHora->descripcion',
                     'headerHtmlOptions' => array('style' => 'width: 110px; text-align: center'),
-                    'htmlOptions' => array('style' => 'text-align: center', 'width' => '10px'),
+                    'htmlOptions' => array('style' => 'text-align: center', 'width' => '10px','class'=>'Hourtext'),
                 ),
                 'fk_dia' => array(
                     'name' => 'fk_dia',
                     'value' => '$data->fkDia->descripcion',
                     'headerHtmlOptions' => array('style' => 'width: 110px; text-align: center'),
-                    'htmlOptions' => array('style' => 'text-align: center', 'width' => '10px'),
+                    'htmlOptions' => array('style' => 'text-align: center', 'width' => '10px','class'=>'Daytext'),
                 ),
                 'fk_aula' => array(
                     'name' => 'fk_aula',
