@@ -3,7 +3,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+<p class="help-block">Los Campos con <span class="required"> * </span> Son requeridos.</p>
 
 <?php echo $form->errorSummary($model); ?>
 
@@ -11,7 +11,6 @@
 
 	<?php echo $form->textFieldRow($model,'nu_aula',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'piso_aula',array('class'=>'span5')); ?>
 
 <div class="form-actions">
 	<?php $this->widget('bootstrap.widgets.TbButton', array(

@@ -33,6 +33,7 @@ class Aula extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('str_piso, nu_aula, piso_aula, es_activo', 'safe'),
+			array('str_piso, nu_aula', 'required'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_aula, str_piso, nu_aula, piso_aula, es_activo', 'safe', 'on'=>'search'),
@@ -59,10 +60,10 @@ class Aula extends CActiveRecord
 	{
 		return array(
 			'id_aula' => 'Id Aula',
-			'str_piso' => 'Str Piso',
-			'nu_aula' => 'Nu Aula',
+			'str_piso' => 'Piso',
+			'nu_aula' => 'Número de Aula',
 			'piso_aula' => 'Piso Aula',
-			'es_activo' => 'Es Activo',
+			'es_activo' => 'Disponibilidad',
 		);
 	}
 
@@ -105,4 +106,14 @@ class Aula extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	public function BuscarPiso(){
+		$criteria = new CDbCriteria;
+		$data = CHtml::listData(self::model()->findAll($criteria), 'str_piso', 'str_piso');
+        return $data;
+		}
+	public function BuscarNumeroAula(){
+		$criteria = new CDbCriteria;
+		$data = CHtml::listData(self::model()->findAll($criteria), 'nu_aula', 'nu_aula');
+        return $data;
+		}
 }

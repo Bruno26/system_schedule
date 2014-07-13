@@ -35,7 +35,7 @@ array('allow', // allow authenticated user to perform 'create' and 'update' acti
 'users'=>array('@'),
 ),
 array('allow', // allow admin user to perform 'admin' and 'delete' actions
-'actions'=>array('admin','delete'),
+'actions'=>array('admin','borrar'),
 'users'=>array('admin'),
 ),
 array('deny',  // deny all users
@@ -68,14 +68,22 @@ $model=new Aula;
 
 if(isset($_POST['Aula']))
 {
-$model->attributes=$_POST['Aula'];
-if($model->save())
-$this->redirect(array('view','id'=>$model->id_aula));
+	$consulta = Aula::model()->findByAttributes(array(
+                'str_piso' =>$_POST['Aula']['str_piso'],
+                'nu_aula' =>$_POST['Aula']['nu_aula'],
+                'es_activo' => 1));
+                //var_dump($consulta);die;
+if (!empty($consulta)) {
+                $this->render('create', array('model' => $model, 'error' => 'error'));
+            } else {
+                $model->str_piso = strtoupper($_POST['Aula']['str_piso']);
+                $model->nu_aula = strtoupper($_POST['Aula']['nu_aula']);
+                $model->piso_aula = strtoupper($_POST['Aula']['str_piso'].$_POST['Aula']['nu_aula']);
+                if ($model->save())
+                    $this->redirect(array('view', 'id' => $model->id_aula));
+            }
 }
-
-$this->render('create',array(
-'model'=>$model,
-));
+$this->render('create',array('model'=>$model));
 }
 
 /**
@@ -92,7 +100,9 @@ $model=$this->loadModel($id);
 
 if(isset($_POST['Aula']))
 {
-$model->attributes=$_POST['Aula'];
+	$model->str_piso = strtoupper($_POST['Aula']['str_piso']);
+    $model->nu_aula = strtoupper($_POST['Aula']['nu_aula']);
+    $model->piso_aula = strtoupper($_POST['Aula']['str_piso'].$_POST['Aula']['nu_aula']);
 if($model->save())
 $this->redirect(array('view','id'=>$model->id_aula));
 }
@@ -122,6 +132,13 @@ else
 throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 }
 
+
+public function actionBorrar($id)
+{
+	Aula::model()->updateByPk($id, array('es_activo' => 0));
+    $this->actionAdmin();
+}
+
 /**
 * Lists all models.
 */
@@ -138,11 +155,11 @@ $this->render('index',array(
 */
 public function actionAdmin()
 {
+	//echo "llego aqui";
 $model=new Aula('search');
 $model->unsetAttributes();  // clear any default values
 if(isset($_GET['Aula']))
 $model->attributes=$_GET['Aula'];
-
 $this->render('admin',array(
 'model'=>$model,
 ));
