@@ -95,7 +95,8 @@ class Horario extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+                $criteria->order ='fk_dia, fk_hora ASC';
+                
 		$criteria->compare('id_horario',$this->id_horario);
 		$criteria->compare('fk_seccion',$this->fk_seccion);
 		$criteria->compare('fk_hora',$this->fk_hora);

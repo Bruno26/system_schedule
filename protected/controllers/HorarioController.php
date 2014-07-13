@@ -1,7 +1,6 @@
 <?php
 
 class HorarioController extends Controller {
-
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
@@ -25,11 +24,11 @@ class HorarioController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'BuscarDisponibilidad', 'RegistrarHorario'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('update'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -53,24 +52,54 @@ class HorarioController extends Controller {
     }
 
     /**
-     * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * METODO QUE BUSCA SI EL AULA ESTA DISPONIBLE O NO 
      */
-    public function actionCreate() {
-        $model = new Horario;
-
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
-
-        if (isset($_POST['Horario'])) {
-            $model->attributes = $_POST['Horario'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id_horario));
+    public function actionBuscarDisponibilidad() {
+        if (isset($_POST)) {
+            $hora = (int) $_POST['horaPost'];
+            $dia = (int) $_POST['diaPost'];
+            $aula = (int) $_POST['aulaPost'];
+            $consulta = AulaHora::model()->findByAttributes(array('fk_aula' => $aula, 'fk_dia' => $dia, 'fk_hora' => $hora, 'es_activo' => 1));
+            if (empty($consulta))
+                echo json_encode(1); //si el aula esta acopada en caso que sea NULL
+            else
+                echo json_encode(0); //si el aula esta disponible
         }
+    }
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+    /**
+     * METODO PARA REGISTRAR HORARIO A UNA SECCION
+     */
+    public function actionRegistrarHorario() {
+        if (isset($_POST)) {
+            $horario = new Horario; //modelo Horario 
+            $aulaHora = new AulaHora; //modelo Horario 
+
+            $hora = (int) $_POST['horaPost'];
+            $dia = (int) $_POST['diaPost'];
+            $aula = (int) $_POST['aulaPost'];
+            $materia = (int) $_POST['materiaPost'];
+            $seccion = (int) $_POST['seccionPost'];
+
+            $aulaHora->fk_aula = $aula;
+            $aulaHora->fk_hora = $hora;
+            $aulaHora->fk_dia = $dia;
+            $aulaHora->es_activo = 1;
+            if ($aulaHora->save()) {
+                $horario->fk_aula = $aula;
+                $horario->fk_dia = $dia;
+                $horario->fk_hora = $hora;
+                $horario->fk_materia = $materia;
+                $horario->fk_seccion = $seccion;
+                if ($horario->save()) {
+                    echo json_encode(1); //si el aula esta acopada en caso que sea NULL
+                } else {
+                    echo json_encode(0); //si el aula esta disponible
+                }
+            } else {
+                echo json_encode(0); //si el aula esta disponible
+            }
+        }
     }
 
     /**
@@ -102,9 +131,10 @@ class HorarioController extends Controller {
      */
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
-// we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-
+            $consulta = $this->loadModel($id);
+            $liberar_aula = AulaHora::model()->findByAttributes(array('fk_aula' => $consulta->fk_aula, 'fk_dia' => $consulta->fk_dia, 'fk_hora' => $consulta->fk_hora));
+            $liberar_aula->updateByPk($liberar_aula->id_aula_hora, array('es_activo' => 0));
+            Horario::model()->updateByPk($id, array('es_activo' => 0));
 // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
@@ -116,10 +146,10 @@ class HorarioController extends Controller {
      * Lists all models.
      */
     public function actionIndex($id) {
-        $seccion  = SeccionController::loadmodel($id);
-        $model= new Horario;
-        
-        $this->render('index', array('seccion' => $seccion, 'model'=>$model));
+        $seccion = SeccionController::loadmodel($id);
+        $model = new Horario;
+
+        $this->render('index', array('seccion' => $seccion, 'model' => $model));
     }
 
     /**

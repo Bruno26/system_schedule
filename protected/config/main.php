@@ -50,7 +50,7 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'caseSensitive' => true,
-            'urlSuffix' => '.asp',
+            'urlSuffix' => '.php',
         ),
         'db' => array(
             'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario_dos',
