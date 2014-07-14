@@ -152,6 +152,7 @@ $this->render('index',array(
 public function consultar_aula()
 {
 echo "hola";
+
 }
 
 /**
