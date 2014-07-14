@@ -46,9 +46,58 @@ class HorarioController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
+        $criteria = new CDbCriteria;
+        $criteria->addColumnCondition(array('t.fk_seccion' => $id));
+        $seccion = SeccionController::loadmodel($id);
+        $busquedaHorario = VswHorarioSeccion::model()->findAll($criteria);
+        if (empty($busquedaHorario)) {
+            $this->redirect(array('seccion/admin', 'error' => 'error'));
+            Yii:app()->end();
+        } else {
+            $carrera = VswSeccionCarreras::model()->findByAttributes(array('id_seccion' => $id, 'es_activo' => 1));
+
+            $listaDias = array();
+            $listaHora = array();
+
+//        listado de horas
+            $horas = Maestro::ConsultaPadre(9);
+            foreach ($horas as $valor):
+                array_push($listaHora, $valor->descripcion);
+            endforeach;
+//        listado de dias        
+            $dias = Maestro::ConsultaPadre(1);
+            foreach ($dias as $valor):
+                array_push($listaDias, $valor->id_maestro);
+            endforeach;
+
+            $html = '<table border="1" class="table responsive">'
+                    . '<tr>'
+                    . '<th>HORA</th><th>Lunes</th>'
+                    . '<th>Martes</th><th>Miercoles</th>'
+                    . '<th>Jueves</th><th>Viernes</th>'
+                    . '<th>Sabado</th><th>Domingo</th></tr>';
+            for ($i = 1; $i <= count($listaHora); $i++) {
+
+                $html.='<tr>';
+                $horaTable = $listaHora[$i - 1];
+                $html.='<td>' . $horaTable . '</td>';
+                for ($j = 1; $j <= count($listaDias); $j++) {
+                    $diaArray = $listaDias[$j - 1];
+                    $band = 0;
+                    foreach ($busquedaHorario as $valor):
+                        if ($valor->hora == $horaTable && $valor->fk_dia == $diaArray) {
+                            $html.='<td>' . $valor->materia . '</td>';
+                            $band++;
+                        }
+                    endforeach;
+                    if ($band == 0) {$html.='<td></td>';}
+                }
+                $html.='</tr>';
+            }
+            $html.='</table>';
+//            $this->render('pdf', array('html' => $html, 'carrera' => $carrera,'listaHora'=>$listaHora,'listaDias'=>$listaDias,'busquedaHorario'=>$busquedaHorario));
+            $this->render('view', array('html' => $html, 'seccion' => $seccion));
+        }
     }
 
     /**
@@ -188,4 +237,5 @@ class HorarioController extends Controller {
             Yii::app()->end();
         }
     }
+
 }

@@ -3,7 +3,7 @@ $this->widget(
         'bootstrap.widgets.TbTabs', array(
     'type' => 'tabs', // 'tabs' or 'pills'
     'tabs' => array(
-        array('label' => 'Registrar', 'active' => false, 'url' => $this->createUrl('create')),
+        array('label' => 'Registrar Sección', 'active' => false, 'url' => $this->createUrl('create')),
         array('label' => 'Administrar Sección', 'active' => true),
     ),
         )
@@ -19,9 +19,22 @@ $this->menu = array(
 </div><!-- search-form -->
 
 <?php
-$model->es_activo ='true';
-$this->widget('bootstrap.widgets.TbGridView', array(
+if (isset($_GET['error'])) {
+    Yii::app()->user->setFlash('error', '<strong>Gestione primero el horario.</strong> ');
+    $this->widget('bootstrap.widgets.TbAlert', array(
+        'block' => true, // display a larger alert block?
+        'fade' => true, // use transitions?
+        'closeText' => 'x', // close link text - if set to false, no close link is displayed
+        'alerts' => array(// configurations per alert type
+            'error' => array('block' => true, 'fade' => true, 'closeText' => '&times;'), // success, info, warning, error or danger
+        ),
+    ));
+}
+
+$model->es_activo = 'true';
+$this->widget('bootstrap.widgets.TbExtendedGridView', array(
     'id' => 'seccion-grid',
+    'responsiveTable' => true,
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
@@ -52,7 +65,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'header' => 'Acción',
             'htmlOptions' => array('width' => '85', 'style' => 'text-align: center;'),
-            'template' => '{ver}{delete}{horario}',
+            'template' => '{ver}{delete}{horario}{imprimir}',
             'buttons' => array(
                 'ver' => array(
                     'url' => 'Yii::app()->createUrl("seccion/view", array("id"=>$data->id_seccion))',
@@ -73,6 +86,13 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                     'size' => 'medium',
                     'options' => array('style' => 'margin-left:7px;',),
                     'url' => 'Yii::app()->createUrl("horario/index", array("id"=>$data->id_seccion))',
+                ),
+                'imprimir' => array(
+                    'label' => 'Imprimir Horario',
+                    'icon' => 'icon-print',
+                    'size' => 'medium',
+                    'options' => array('style' => 'margin-left:7px;',),
+                    'url' => 'Yii::app()->createUrl("horario/view", array("id"=>$data->id_seccion))',
                 ),
             ),
         ),

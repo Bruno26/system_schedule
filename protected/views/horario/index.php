@@ -3,8 +3,10 @@ $this->widget(
         'bootstrap.widgets.TbTabs', array(
     'type' => 'tabs', // 'tabs' or 'pills'
     'tabs' => array(
-        array('label' => 'Gestionar Horario', 'active' => true),
+        array('label' => 'Registrar Sección', 'active' => false, 'url' => $this->createUrl('/seccion/create')),
         array('label' => 'Administrar Secciones', 'active' => false, 'url' => $this->createUrl('/seccion/admin')),
+        array('label' => 'Gestionar Horario', 'active' => true),
+        array('label' => 'Ver Horario', 'active' => false, 'url' => $this->createUrl('/horario/view', array('id'=>$seccion->id_seccion))),
     ),
         )
 );

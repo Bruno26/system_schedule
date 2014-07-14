@@ -116,5 +116,14 @@ class Maestro extends CActiveRecord {
         $data = CHtml::listData(self::model()->findAll($criteria), 'id_maestro', 'descripcion');
         return $data;
     }
+    
+    public function ConsultaPadre($IdPadre) {
+        $criteria = new CDbCriteria;
+        $criteria->addColumnCondition(array('t.padre' => $IdPadre));
+        $criteria->order = 't.id_maestro ASC';
+        $data = Maestro::model()->findAll($criteria);
+        return $data;
+    }
+    
 
 }

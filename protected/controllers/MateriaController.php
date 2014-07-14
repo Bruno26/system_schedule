@@ -74,15 +74,16 @@ class MateriaController extends Controller {
                 $model->fk_seccion = $_POST['Materia']['fk_seccion'];
                 $model->str_materia = strtoupper($_POST['Materia']['str_materia']);
                 $model->str_corto_materia = strtoupper($_POST['Materia']['str_corto_materia']);
-                if ($model->save())
+                if ($model->save()) {
+                    Yii::app()->session->destroy();
                     $this->redirect(array('view', 'id' => $model->id_materia));
+                }
             }
         }
 
         $this->render('create', array('model' => $model));
     }
 
-   
     /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -116,10 +117,11 @@ class MateriaController extends Controller {
      */
     public function actionBuscarTrayecto() {
         $Id = (isset($_POST['Materia']['carrera']) ? $_POST['Materia']['carrera'] : $_GET['carrera']);
+        Yii::app()->getSession()->add('carrera', $Id);
         $Selected = isset($_GET['trayecto']) ? $_GET['trayecto'] : '';
         if (!empty($Id)) {
             $criteria = new CDbCriteria;
-            $criteria->addCondition('t.fk_carrera = :fk_carrera');
+            $criteria->addCondition('t.fk_carrera = :fk_carrera AND es_activo= true');
             $criteria->params = array(':fk_carrera' => $Id);
             $criteria->order = 't.fk_trayecto ASC';
             $data = CHtml::listData(VswSeccionCarreras::model()->findAll($criteria), 'fk_trayecto', 'trayecto');
@@ -142,10 +144,11 @@ class MateriaController extends Controller {
      */
     public function actionBuscarTrimestre() {
         $Id = (isset($_POST['Materia']['trayecto']) ? $_POST['Materia']['trayecto'] : $_GET['trayecto']);
+        Yii::app()->getSession()->add('trayecto', $Id);
         $Selected = isset($_GET['trimestre']) ? $_GET['trimestre'] : '';
         if (!empty($Id)) {
             $criteria = new CDbCriteria;
-            $criteria->addCondition('t.fk_trayecto= :fk_trayecto');
+            $criteria->addCondition('t.fk_trayecto= :fk_trayecto AND es_activo= true');
             $criteria->params = array(':fk_trayecto' => $Id);
             $criteria->order = 't.trimestre ASC';
             $data = CHtml::listData(VswSeccionCarreras::model()->findAll($criteria), 'fk_trimestre', 'trimestre');
@@ -169,10 +172,13 @@ class MateriaController extends Controller {
     public function actionBuscarSeccion() {
         $Id = (isset($_POST['Materia']['trimestre']) ? $_POST['Materia']['trimestre'] : $_GET['trimestre']);
         $Selected = isset($_GET['fk_seccion']) ? $_GET['fk_seccion'] : '';
+        $carrera = Yii::app()->getSession()->get('carrera'); // id_carrera
+        $trayecto = Yii::app()->getSession()->get('trayecto'); //id_trayecto
         if (!empty($Id)) {
             $criteria = new CDbCriteria;
-            $criteria->addCondition('t.fk_trimestre= :fk_trimestre');
-            $criteria->params = array(':fk_trimestre' => $Id);
+            $criteria->addCondition('t.fk_trimestre= :fk_trimestre AND t.fk_carrera= :fk_carrera AND t.fk_trayecto= :fk_trayecto');
+            $criteria->params = array(':fk_trimestre' => $Id, ':fk_carrera' => $carrera, ':fk_trayecto' => $trayecto);
+
             $criteria->order = 't.seccion ASC';
             $data = CHtml::listData(VswSeccionCarreras::model()->findAll($criteria), 'id_seccion', 'seccion');
 
