@@ -13,9 +13,9 @@ $this->widget(
         )
 );
 ?>
-
+<div align="center">
 <h1>Listado de Aulas Disponibles</h1>
-
+</div>
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'aula-grid',
