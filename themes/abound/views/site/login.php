@@ -3,68 +3,64 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
-);
+$this->pageTitle = Yii::app()->name . ' - Login';
 ?>
+
+<div style="margin-top: 80px"></div>
 <div class="page-header">
-	<h1>Login <small>to your account</small></h1>
+    <h1 align="center"><i>Iniciar Sesión</i></h1>
 </div>
 <div class="row-fluid">
-	
+
     <div class="span6 offset3">
+        <?php
+        $this->beginWidget('zii.widgets.CPortlet', array(
+            'title' => "Acceso",
+        ));
+        ?>
+
+
+
+        <!--<p>Please fill out the following form with your login credentials:</p>-->
+
+        <div class="form">
 <?php
-	$this->beginWidget('zii.widgets.CPortlet', array(
-		'title'=>"Private access",
-	));
-	
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id' => 'login-form',
+    'enableClientValidation' => true,
+    'clientOptions' => array(
+        'validateOnSubmit' => true,
+    ),
+        ));
 ?>
 
+            <p class="note">Los campos son obligatorios.</p>
+
+            <div class="row-fluid">
+                <div class="span6">
+
+                    <?php echo $form->labelEx($model, 'Usuario'); ?>
+                    <?php echo $form->textField($model, 'username'); ?>
+                    <?php echo $form->error($model, 'username'); ?>
+                </div>
+                <div class="span6">
+
+                    <?php echo $form->labelEx($model, 'Contraseña'); ?>
+                    <?php echo $form->passwordField($model, 'password'); ?>
+                    <?php echo $form->error($model, 'password'); ?>
+                </div>
+
+            </div><br><br> 
 
 
-    <p>Please fill out the following form with your login credentials:</p>
-    
-    <div class="form">
-    <?php $form=$this->beginWidget('CActiveForm', array(
-        'id'=>'login-form',
-        'enableClientValidation'=>true,
-        'clientOptions'=>array(
-            'validateOnSubmit'=>true,
-        ),
-    )); ?>
-    
-        <p class="note">Fields with <span class="required">*</span> are required.</p>
-    
-        <div class="row">
-            <?php echo $form->labelEx($model,'username'); ?>
-            <?php echo $form->textField($model,'username'); ?>
-            <?php echo $form->error($model,'username'); ?>
-        </div>
-    
-        <div class="row">
-            <?php echo $form->labelEx($model,'password'); ?>
-            <?php echo $form->passwordField($model,'password'); ?>
-            <?php echo $form->error($model,'password'); ?>
-            <p class="hint">
-                Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-            </p>
-        </div>
-    
-        <div class="row rememberMe">
-            <?php echo $form->checkBox($model,'rememberMe'); ?>
-            <?php echo $form->label($model,'rememberMe'); ?>
-            <?php echo $form->error($model,'rememberMe'); ?>
-        </div>
-    
-        <div class="row buttons">
-            <?php echo CHtml::submitButton('Login',array('class'=>'btn btn btn-primary')); ?>
-        </div>
-    
-    <?php $this->endWidget(); ?>
-    </div><!-- form -->
+            <div class="row buttons" align="center">
+                <?php echo CHtml::submitButton('Iniciar', array('class' => 'btn btn btn-primary')); ?>
+            </div>
 
-<?php $this->endWidget();?>
+            <?php $this->endWidget(); ?>
+        </div><!-- form -->
+
+        <?php $this->endWidget(); ?>
 
     </div>
 
