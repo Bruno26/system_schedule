@@ -20,6 +20,7 @@ $this->widget(
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'aula-grid',
     'dataProvider' => $model->search(),
+    'responsiveTable' => true,
     'filter' => $model,
     'columns' => array(
         'str_piso' => array(

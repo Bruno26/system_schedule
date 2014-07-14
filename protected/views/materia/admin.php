@@ -19,6 +19,7 @@ $this->widget(
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'materia-grid',
     'dataProvider' => $model->search(),
+    'responsiveTable' => true,
     'filter' => $model,
     'columns' => array(
         'carrera' => array(
