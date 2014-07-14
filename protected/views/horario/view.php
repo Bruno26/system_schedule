@@ -1,4 +1,5 @@
 <?php 
+echo "<br><br><br><br><br>";
 $this->widget(
         'bootstrap.widgets.TbTabs', array(
     'type' => 'tabs', // 'tabs' or 'pills'

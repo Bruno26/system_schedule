@@ -2,11 +2,12 @@
 //$this->breadcrumbs = array(
 //    'Registrar',
 //);
-
+echo "<br><br><br><br><br>";
 $this->widget(
         'bootstrap.widgets.TbTabs', array(
     'type' => 'tabs', // 'tabs' or 'pills'
     'tabs' => array(
+        array('label' => 'Consultar Aulas Disponibles', 'active' => false, 'url' => $this->createUrl('consultar_aula')),
         array('label' => 'Ver Aulas Registradas', 'active' => true, 'url' => $this->createUrl('admin')),
         array('label' => 'Registrar Aulas', 'active' => false, 'url' => $this->createUrl('create')),
     ),

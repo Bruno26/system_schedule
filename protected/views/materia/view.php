@@ -1,10 +1,11 @@
 <?php
+echo "<br><br><br><br><br>";
 $this->widget(
         'bootstrap.widgets.TbTabs', array(
     'type' => 'tabs', // 'tabs' or 'pills'
     'tabs' => array(
         array('label' => 'Registra', 'active' => false, 'url' => $this->createUrl('create')),
-        array('label' => 'Ver', 'active' => true),
+        //array('label' => 'Ver', 'active' => true),
         array('label' => 'Administrar Materias', 'active' => false, 'url' => $this->createUrl('admin')),
     ),
         )

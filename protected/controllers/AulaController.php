@@ -149,6 +149,10 @@ $this->render('index',array(
 'aula'=>$model,
 ));
 }
+public function consultar_aula()
+{
+echo "hola";
+}
 
 /**
 * Manages all models.
