@@ -156,7 +156,6 @@ $this->render('consultar_aula',array(
 'model'=>$model
 ));
 }
-
 /**
 * Manages all models.
 */
