@@ -27,7 +27,7 @@ public function accessRules()
 {
 return array(
 array('allow',  // allow all users to perform 'index' and 'view' actions
-'actions'=>array('index','view'),
+'actions'=>array('index','view','consultar'),
 'users'=>array('*'),
 ),
 array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -149,10 +149,12 @@ $this->render('index',array(
 'aula'=>$model,
 ));
 }
-public function consultar_aula()
+public function actionConsultar()
 {
-echo "hola";
-
+$model=new VswHorarioSeccion;
+$this->render('consultar_aula',array(
+'model'=>$model
+));
 }
 
 /**
