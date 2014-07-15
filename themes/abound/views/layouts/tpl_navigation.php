@@ -19,12 +19,12 @@
 'items'=>array(
 //				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 //				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Aula', 'url'=>array('/aula/admin')),
-				array('label'=>'Sección', 'url'=>array('/seccion/admin')),
-				array('label'=>'Materia', 'url'=>array('/materia/admin')),
+				array('label'=>'Aula', 'url'=>array('/aula/admin'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Sección', 'url'=>array('/seccion/admin'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Materia', 'url'=>array('/materia/admin'),'visible'=>!Yii::app()->user->isGuest),
 				//array('label'=>'Horario', 'url'=>array('/horario/view')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)                    ),
+				array('label'=>'Iniciar Sesión', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Cerrar Sesión ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)                    ),
                 )); ?>
     	</div>
     </div>
