@@ -10,6 +10,22 @@ $this->widget(
         )
 );
 
+/**
+ * 
+ * Funcion que busca si existe un horario registrado
+ * TRUE se existe un registro en horario, no visible para eliminar seccion
+ * FALSE puede ser eliminado
+ */
+function consulta($id) {
+    $consultaHorario = VswHorarioSeccion::model()->findByAttributes(array('fk_seccion' => $id));
+    if (empty($consultaHorario)) {
+        $execute = true;
+    } else {
+        $execute = false;
+    }
+    return $execute;
+}
+
 $this->menu = array(
     array('label' => 'Create Seccion', 'url' => array('create')),
 );
@@ -80,6 +96,7 @@ $this->widget('bootstrap.widgets.TbExtendedGridView', array(
                     'size' => 'medium',
                     'options' => array('style' => 'margin-left:7px;',),
                     'url' => 'Yii::app()->createUrl("seccion/delete", array("id"=>$data->id_seccion))',
+                    'visible' =>'consulta($data->id_seccion)',
                 ),
                 'horario' => array(
                     'label' => 'Ver horaio',

@@ -17,6 +17,22 @@ $this->widget(
 </div><!-- search-form -->
 
 <?php
+/**
+ * 
+ * Funcion que busca si existe una materia asociada a un horario
+ * TRUE se existe un registro en horario, no visible para eliminar seccion
+ * FALSE puede ser eliminado
+ */
+function consulta($id) {
+    $MateriaHorario = Horario::model()->findByAttributes(array('fk_materia' => $id, 'es_activo'=>1));
+    if (empty($MateriaHorario)) {
+        $execute = true;
+    } else {
+        $execute = false;
+    }
+    return $execute;
+}
+
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'materia-grid',
     'dataProvider' => $model->search(),
@@ -72,11 +88,12 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                     'size' => 'medium',
                 ),
                 'delete' => array(
-                    'label' => 'Adjuntar Archivos',
+                    'label' => 'Eliminar Materia',
                     'icon' => 'icon-trash',
                     'size' => 'medium',
                     'options' => array('style' => 'margin-left:7px;',),
                     'url' => 'Yii::app()->createUrl("materia/delete", array("id"=>$data->id_materia))',
+                    'visible' =>'consulta($data->id_materia)',
                 ),
             ),
         ),
