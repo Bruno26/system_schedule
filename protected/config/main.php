@@ -52,20 +52,20 @@ return array(
             'caseSensitive' => true,
             'urlSuffix' => '.php',
         ),
-//        'db' => array(
-//            'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario_dos',
-//            'emulatePrepare' => false,
-//            'username' => 'postgres',
-//            'password' => '123456',
-//            'charset' => 'utf8',
-//        ),
         'db' => array(
-            'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
-            'emulatePrepare' => FALSE,
+            'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario_dos',
+            'emulatePrepare' => false,
             'username' => 'postgres',
-            'password' => 'postgres',
+            'password' => '123456',
             'charset' => 'utf8',
         ),
+//        'db' => array(
+//            'connectionString' => 'pgsql:host=localhost;dbname=system_horario',
+//            'emulatePrepare' => FALSE,
+//            'username' => 'postgres',
+//            'password' => 'postgres',
+//            'charset' => 'utf8',
+//        ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
