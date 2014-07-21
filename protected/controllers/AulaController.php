@@ -151,14 +151,38 @@ $this->render('index',array(
 }
 public function actionConsultar()
 {
-$model=new Horario;
-//$connection = Yii::app()->db;
-//$command = $connection->createCommand('select descripcion as hora, piso_aula as aula from aula_hora join maestro on(maestro.id_maestro = aula_hora.fk_hora) join aula on (aula.id_aula = aula_hora.fk_aula)');
-//$row = $command->queryRow(); 
-//var_dump($row['aula']);die;
+	$model=new Horario;
+	$html="No se encontró ningun resultado";
+	if(isset($_POST['Horario']['fk_hora'])){
+		$hora=$_POST['Horario']['fk_hora'];
+		$dia=$_POST['Horario']['fk_dia'];
+		$connection = Yii::app()->db;
+		$command = $connection->createCommand('select descripcion as hora, piso_aula as aula from aula_hora join maestro on(maestro.id_maestro = aula_hora.fk_hora) join aula on (aula.id_aula = aula_hora.fk_aula) where fk_dia ='.$dia.'and fk_hora='.$hora);
+		$row = $command->queryAll();
+		if ($row == null){
+			$this->render('consultar_aula', array('model' => $model, 'error' =>'error','html'=>$html));
+                Yii:app()->end();
+	}else{
+		$disponible="No Disponible";
+		//var_dump(count($row));die;
+		$html = '<table border="1" class="table responsive">'
+                . '<tr>'
+                . '<th>HORA</th><th>Aula</th>'
+                . '<th>Disponible';
+		for ($i = 1; $i <= count($row) ; $i++) {
+			$html.='<tr>';
+			$html.='<td>' . $row[$i-1]['hora'] . '</td>';
+			$html.='<td>' . $row[$i-1]['aula'] . '</td>';
+			$html.='<td>' . $disponible . '</td>';
+			$html.='</tr>';
+		}
+            $html.='</table>';
+	    //var_dump($html);die;
+	    $this->render('consultar_aula', array('html' => $html,'model'=>$model));
+	}
+}
 $this->render('consultar_aula',array(
-'model'=>$model
-));
+'model'=>$model,'html'=>$html));
 }
 /**
 * Manages all models.

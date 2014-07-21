@@ -46,17 +46,17 @@ return array(
           ),
           // uncomment the following to use a MySQL database
          */
-        'urlManager' => array(
-            'urlFormat' => 'path',
-            'showScriptName' => false,
-            'caseSensitive' => true,
-            'urlSuffix' => '.php',
-        ),
+        //'urlManager' => array(
+            //'urlFormat' => 'path',
+            //'showScriptName' => false,
+            //'caseSensitive' => true,
+            //'urlSuffix' => '.php',
+        //),
         'db' => array(
             'connectionString' => 'pgsql:host=bell-1.myftp.org;dbname=system_horario_dos',
             'emulatePrepare' => false,
             'username' => 'postgres',
-            'password' => '123456',
+            'password' => '137946.4dm1n',
             'charset' => 'utf8',
         ),
 //        'db' => array(
