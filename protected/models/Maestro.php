@@ -124,6 +124,13 @@ class Maestro extends CActiveRecord {
         $data = Maestro::model()->findAll($criteria);
         return $data;
     }
+    public function ConsultaHoraDia($Id) {
+        $criteria = new CDbCriteria;
+        $criteria->addColumnCondition(array('t.id_maestro' => $Id));
+        $criteria->order = 't.id_maestro ASC';
+        $data = Maestro::model()->findAll($criteria);
+        return $data;
+    }
     
 
 }

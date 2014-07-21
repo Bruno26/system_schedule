@@ -23,7 +23,7 @@ $this->widget(
 ?>
 <div class="info">
         <?php if (isset($error)) {
-    Yii::app()->user->setFlash('succes', '<strong>Atención</strong> ¡No existen aulas registradas para esa hora y día!.');
+    Yii::app()->user->setFlash('succes', '<strong>Atención</strong> ¡No existen aulas registradas para el día '.$dia.' de '.$hora);
     $this->widget('bootstrap.widgets.TbAlert', array(
         'block' => true, // display a larger alert block?
         'fade' => true, // use transitions?

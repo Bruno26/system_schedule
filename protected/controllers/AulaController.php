@@ -160,7 +160,9 @@ public function actionConsultar()
 		$command = $connection->createCommand('select descripcion as hora, piso_aula as aula from aula_hora join maestro on(maestro.id_maestro = aula_hora.fk_hora) join aula on (aula.id_aula = aula_hora.fk_aula) where fk_dia ='.$dia.'and fk_hora='.$hora);
 		$row = $command->queryAll();
 		if ($row == null){
-			$this->render('consultar_aula', array('model' => $model, 'error' =>'error','html'=>$html));
+			$ConHrs=Maestro::ConsultaHoraDia($hora);
+			$ConDia=Maestro::ConsultaHoraDia($dia);
+			$this->render('consultar_aula', array('model' => $model, 'error' =>'error','html'=>$html,'hora'=>$ConHrs[0]['descripcion'],'dia'=>$ConDia[0]['descripcion']));
                 Yii:app()->end();
 	}else{
 		$disponible="No Disponible";
